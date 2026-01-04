@@ -48,6 +48,24 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface as RoutingUrlGener
 use Symfony\Component\Security\Acl\Model\DomainObjectInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+if (interface_exists(DomainObjectInterface::class)) {
+    /**
+     * @internal
+     *
+     * @deprecated using SonataAdminBundle together with "symfony/security-acl" is deprecated and won't be supported in the next major release
+     */
+    abstract class BaseAbstractAdmin extends AbstractTaggedAdmin implements DomainObjectInterface
+    {
+    }
+} else {
+    /**
+     * @internal
+     */
+    abstract class BaseAbstractAdmin extends AbstractTaggedAdmin
+    {
+    }
+}
+
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -55,7 +73,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  * @phpstan-extends AbstractTaggedAdmin<T>
  * @phpstan-implements AdminInterface<T>
  */
-abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterface, DomainObjectInterface, AdminTreeInterface
+abstract class AbstractAdmin extends BaseAbstractAdmin implements AdminInterface, AdminTreeInterface
 {
     // NEXT_MAJOR: Remove the CONTEXT constants.
     /** @deprecated */
@@ -1489,10 +1507,19 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
     }
 
     /**
+     * @deprecated
+     *
      * @return string
      */
     public function getObjectIdentifier()
     {
+        trigger_deprecation(
+            'sonata-project/admin-bundle',
+            '4.42.0',
+            'Method "%s" and using SonataAdminBundle together with symfony/security-acl is deprecated.',
+            __METHOD__
+        );
+
         return $this->getCode();
     }
 
@@ -1676,6 +1703,13 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
 
     final public function isAclEnabled(): bool
     {
+        trigger_deprecation(
+            'sonata-project/admin-bundle',
+            '4.42.0',
+            'Method "%s" and using SonataAdminBundle together with symfony/security-acl is deprecated.',
+            __METHOD__
+        );
+
         return $this->getSecurityHandler() instanceof AclSecurityHandlerInterface;
     }
 

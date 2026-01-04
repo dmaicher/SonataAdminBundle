@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\AdminBundle\Tests\Util;
 
+use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Sonata\AdminBundle\Admin\AdminInterface;
@@ -26,6 +27,7 @@ use Symfony\Component\Security\Acl\Model\ObjectIdentityInterface;
 /**
  * @author Grégoire Paris <postmaster@greg0ire.fr>
  */
+#[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
 final class ObjectAclManipulatorTest extends TestCase
 {
     /**

@@ -15,6 +15,24 @@ namespace Sonata\AdminBundle\Security\Acl\Permission;
 
 use Symfony\Component\Security\Acl\Permission\PermissionMapInterface;
 
+if (interface_exists(PermissionMapInterface::class)) {
+    /**
+     * @internal
+     *
+     * @deprecated using "symfony/security-acl" together with SonataAdminBundle is deprecated and won't be supported in the next major release
+     */
+    abstract class BaseAdminPermissionMap implements PermissionMapInterface
+    {
+    }
+} else {
+    /**
+     * @internal
+     */
+    abstract class BaseAdminPermissionMap
+    {
+    }
+}
+
 /**
  * This is basic permission map complements the masks which have been defined
  * on the standard implementation of the MaskBuilder.
@@ -22,7 +40,7 @@ use Symfony\Component\Security\Acl\Permission\PermissionMapInterface;
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  * @author Thomas Rabaix <thomas.rabaix@gmail.com>
  */
-final class AdminPermissionMap implements PermissionMapInterface
+final class AdminPermissionMap extends BaseAdminPermissionMap
 {
     public const PERMISSION_VIEW = 'VIEW';
     public const PERMISSION_EDIT = 'EDIT';

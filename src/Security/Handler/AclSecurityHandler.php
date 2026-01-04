@@ -30,7 +30,11 @@ use Symfony\Component\Security\Core\Exception\AuthenticationCredentialsNotFoundE
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * @deprecated using SonataAdminBundle together with "symfony/security-acl" is deprecated and won't be supported in the next major release
+ *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * NEXT_MAJOR: remove class
  */
 final class AclSecurityHandler implements AclSecurityHandlerInterface
 {
@@ -61,6 +65,13 @@ final class AclSecurityHandler implements AclSecurityHandlerInterface
         private string $maskBuilderClass,
         $superAdminRoles,
     ) {
+        trigger_deprecation(
+            'sonata-project/admin-bundle',
+            '4.42.0',
+            'Class "%s" and using SonataAdminBundle together with symfony/security-acl is deprecated.',
+            __CLASS__
+        );
+
         // NEXT_MAJOR: Keep only the elseif part and add typehint.
         if (\is_array($superAdminRoles)) {
             @trigger_error(\sprintf(

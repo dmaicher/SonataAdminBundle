@@ -15,6 +15,7 @@ namespace Sonata\AdminBundle\Tests\Controller;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
+use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -3199,6 +3200,7 @@ final class CRUDControllerTest extends TestCase
         static::assertSame([], $this->session->getFlashBag()->all());
     }
 
+    #[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
     public function testAclActionAclNotEnabled(): void
     {
         $this->request->attributes->set($this->admin->getIdParameter(), 21);
@@ -3209,6 +3211,7 @@ final class CRUDControllerTest extends TestCase
         $this->controller->aclAction($this->request);
     }
 
+    #[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
     public function testAclActionNotFoundException(): void
     {
         $this->request->attributes->set($this->admin->getIdParameter(), '21');
@@ -3226,6 +3229,7 @@ final class CRUDControllerTest extends TestCase
         $this->controller->aclAction($this->request);
     }
 
+    #[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
     public function testAclActionAccessDenied(): void
     {
         $this->request->attributes->set($this->admin->getIdParameter(), 21);
@@ -3251,6 +3255,7 @@ final class CRUDControllerTest extends TestCase
     }
 
     #[IgnoreDeprecations]
+    #[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
     public function testAclAction(): void
     {
         $this->request->attributes->set($this->admin->getIdParameter(), 21);
@@ -3333,6 +3338,7 @@ final class CRUDControllerTest extends TestCase
         static::assertSame([], $this->session->getFlashBag()->all());
     }
 
+    #[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
     public function testAclActionInvalidUpdate(): void
     {
         $this->request->attributes->set($this->admin->getIdParameter(), 21);
@@ -3422,6 +3428,7 @@ final class CRUDControllerTest extends TestCase
         static::assertSame([], $this->session->getFlashBag()->all());
     }
 
+    #[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
     public function testAclActionSuccessfulUpdate(): void
     {
         $this->request->attributes->set($this->admin->getIdParameter(), 21);

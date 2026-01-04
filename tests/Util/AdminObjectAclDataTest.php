@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\AdminBundle\Tests\Util;
 
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\Framework\TestCase;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Security\Acl\Permission\MaskBuilder;
@@ -25,6 +26,7 @@ use Symfony\Component\Security\Acl\Domain\Acl;
 /**
  * @author Kévin Dunglas <kevin@les-tilleuls.coop>
  */
+#[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
 final class AdminObjectAclDataTest extends TestCase
 {
     public function testGetAdmin(): void

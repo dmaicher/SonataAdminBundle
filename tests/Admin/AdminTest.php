@@ -1264,6 +1264,7 @@ final class AdminTest extends TestCase
         static::assertTrue($admin->showInDashboard());
     }
 
+    #[IgnoreDeprecations]
     public function testGetObjectIdentifier(): void
     {
         $admin = new PostAdmin();

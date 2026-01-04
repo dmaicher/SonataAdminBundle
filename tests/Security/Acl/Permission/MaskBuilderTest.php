@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace Sonata\AdminBundle\Tests\Security\Acl\Permission;
 
+use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\Framework\TestCase;
 use Sonata\AdminBundle\Security\Acl\Permission\MaskBuilder;
 
+#[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
 final class MaskBuilderTest extends TestCase
 {
     public function testGetPattern(): void

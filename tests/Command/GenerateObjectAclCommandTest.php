@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\AdminBundle\Tests\Command;
 
+use PHPUnit\Framework\Attributes\RequiresMethod;
 use PHPUnit\Framework\TestCase;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Admin\Pool;
@@ -28,6 +29,7 @@ use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 /**
  * @author Javier Spagnoletti <phansys@gmail.com>
  */
+#[RequiresMethod(ObjectIdentityInterface::class, 'getIdentifier')]
 final class GenerateObjectAclCommandTest extends TestCase
 {
     private Container $container;

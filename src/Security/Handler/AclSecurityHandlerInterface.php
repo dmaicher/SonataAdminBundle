@@ -21,6 +21,10 @@ use Symfony\Component\Security\Acl\Model\SecurityIdentityInterface;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * @deprecated using SonataAdminBundle together with "symfony/security-acl" is deprecated and won't be supported in the next major release.
+ *
+ * NEXT_MAJOR: remove interface
  */
 interface AclSecurityHandlerInterface extends SecurityHandlerInterface
 {

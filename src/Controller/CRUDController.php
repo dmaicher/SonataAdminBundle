@@ -857,6 +857,8 @@ class CRUDController extends AbstractController
     }
 
     /**
+     * @deprecated using SonataAdminBundle together with "symfony/security-acl" is deprecated and won't be supported in the next major release.
+     *
      * Returns the Response object associated to the acl action.
      *
      * @throws AccessDeniedException If access is not granted
@@ -864,6 +866,13 @@ class CRUDController extends AbstractController
      */
     public function aclAction(Request $request): Response
     {
+        trigger_deprecation(
+            'sonata-project/admin-bundle',
+            '4.42.0',
+            'Method "%s" and using SonataAdminBundle together with symfony/security-acl is deprecated.',
+            __METHOD__
+        );
+
         if (!$this->admin->isAclEnabled()) {
             throw $this->createNotFoundException('ACL are not enabled for this admin');
         }
